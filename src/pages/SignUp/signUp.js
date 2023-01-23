@@ -13,6 +13,13 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const [userInfo, setUserInfo] = useState({ name: "", password: "", mail: "" });
+  const [emailErrorMessage, setEmailErrorMessage] = useState('');
+  const [signUpComplete, setSignUpComplete] = useState(false);
+
+  const checkEmailValid = (mail) => {
+    const emailRegExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+    return mail.match(emailRegExp);
+  };
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -20,6 +27,12 @@ const SignUp = () => {
       ...userInfo,
       [name]: value,
     });
+
+    if (name === 'mail') {
+      setEmailErrorMessage(
+        checkEmailValid(value) === null && '이메일을 확인해주세요.'
+      );
+    }
   };
 
   const onClickSignUp = () => {
@@ -35,9 +48,7 @@ const SignUp = () => {
   }
 
   const signUpCompleted = () => {
-    setUserInfo({ name: "", password: "", mail: "" })
-    alert('회원가입 완료')
-    navigate('/login')
+    setSignUpComplete(true)
   }
 
   const [signUp] = useMutation(SIGN_UP, {
@@ -46,6 +57,7 @@ const SignUp = () => {
 
   return (
     <Wrap>
+      <h2>회원 가입</h2>
       <StyledInput
         name='name'
         value={userInfo.name}
@@ -58,8 +70,8 @@ const SignUp = () => {
         value={userInfo.mail}
         placeholder='이메일'
         type='email'
-        required
         onChange={onChange} />
+        {emailErrorMessage && <div style={{color: 'red'}}> {emailErrorMessage} </div>}
       <StyledInput
         name='password'
         value={userInfo.password}
@@ -68,9 +80,14 @@ const SignUp = () => {
         required
         onChange={onChange} />
 
-      <StyledButton onClick={() => onClickSignUp()}>
-        가입
-      </StyledButton>
+      {signUpComplete 
+      ? <StyledButton onClick={() => navigate('/login')}>
+          완료🎉
+        </StyledButton>
+      : <StyledButton onClick={() => onClickSignUp()}>
+          가입
+        </StyledButton>}
+      
     </Wrap>
   )
 }
