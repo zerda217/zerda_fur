@@ -11,20 +11,20 @@ const Header = () => {
   return (
     <Wrap>
       <StyledLink to="/">
-        <BiHomeHeart />
+        <BiHomeHeart size='3vh' />
       </StyledLink>
       
       <Menu>
         { name !== ""
           ? <div onClick={() => dispatch(logout())}>
-              <BiLogOutCircle /> {name}님
+              <BiLogOutCircle size='3vh' /> {name}님
             </div>
           : <>
             <StyledLink to='/login'> 
-              <BiLogInCircle /> 로그인
+              <BiLogInCircle size='3vh' /> 로그인
             </StyledLink>
             <StyledLink to='/signUp'> 
-              <BiIdCard /> 가입 
+              <BiIdCard size='3vh' /> 가입 
             </StyledLink>
             </>
         }
@@ -46,7 +46,6 @@ const Menu = styled.div`
   justify-content: end;
   font-size: 1.2rem;
   width: 50%;
-  border: 1px solid red;
 `;
 
 const StyledLink = styled(Link)`
@@ -54,7 +53,6 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   color: black;
   margin: 1.2vh;
-
 `;
 
 export default Header;

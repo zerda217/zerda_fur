@@ -26,7 +26,6 @@ const SignIn = () => {
       password: userInfo.password
     }
   })
-console.log(`${userInfo} / ${confirm} / ${data}`, userInfo)
 
   const onChange = (e) => {
     const { value, name } = e.target;
