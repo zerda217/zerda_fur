@@ -16,16 +16,17 @@ const SignIn = () => {
   const dispatch = useDispatch();
 
   const [userInfo, setUserInfo] = useState({ name: "", password: "" });
-  const [confirm, setConfirm] = useState(false)
+  const [confirm, setConfirm] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const {loading, error, data} = useQuery(SIGN_IN, {
+  const {loading, data} = useQuery(SIGN_IN, {
     skip: confirm === false,
     fetchPolicy: "no-cache",
     variables: {
       name: userInfo.name,
       password: userInfo.password
     }
-  })
+  });
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -37,24 +38,25 @@ const SignIn = () => {
 
   const onClickSignin = () => {
     setConfirm(true)
-  }
+  };
 
   if (loading) {
-    return <>'로딩 중'</>
-  }
-  if (error) {
-    setConfirm(false)
-    alert('아이디와 비밀번호를 확인해주세요.')
-  }
-  if (data?.signIn.status === "ok") {
+    setTimeout(() => setConfirm(false), 1000)
+  };
+
+  if (data?.signIn.message === "로그인 성공") {
     setConfirm(false)
     dispatch(login(userInfo.name))
     setUserInfo({ name: "", password: "" })
     navigate('/todos')
-  }
+  } else if (data?.signIn.message === "가입된 회원이 아닙니다") {
+    setConfirm(false)
+    setErrorMessage('아이디와 비밀번호를 확인해주세요.')
+  };
 
   return (
     <Wrap>
+      <h2>로그인</h2>
       <StyledInput
         name="name"
         value={userInfo.name}
@@ -67,6 +69,8 @@ const SignIn = () => {
         placeholder='비밀번호'
         type='password'
         onChange={onChange} />
+
+      {errorMessage && <div style={{color: 'red'}}> {errorMessage} </div>}
 
       <StyledButton onClick={onClickSignin}>
         확인
