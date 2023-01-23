@@ -1,16 +1,33 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../store/feature/userSlice";
+import { BiHomeHeart, BiLogInCircle, BiLogOutCircle, BiIdCard } from "react-icons/bi";
 
 const Header = () => {
+  const { name } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
   return (
     <Wrap>
-      <Link to="/">
-        <div>MAIN</div>
-      </Link>
+      <StyledLink to="/">
+        <BiHomeHeart size='3vh' />
+      </StyledLink>
       
       <Menu>
-        <StyledLink to='/login'> 로그인 </StyledLink>
-        <StyledLink to='/signUp'> 가입 </StyledLink>
+        { name !== ""
+          ? <div onClick={() => dispatch(logout())}>
+              <BiLogOutCircle size='3vh' /> {name}님
+            </div>
+          : <>
+            <StyledLink to='/login'> 
+              <BiLogInCircle size='3vh' /> 로그인
+            </StyledLink>
+            <StyledLink to='/signUp'> 
+              <BiIdCard size='3vh' /> 가입 
+            </StyledLink>
+            </>
+        }
       </Menu>
 
     </Wrap>
@@ -21,30 +38,21 @@ const Wrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1vh;
 `;
 
 const Menu = styled.div`
   display: flex;
-  justify-content: space-around;
-  padding: 10px;
-  font-size: 1.5rem;
-  width: 25%;
+  justify-content: end;
+  font-size: 1.2rem;
+  width: 50%;
 `;
 
 const StyledLink = styled(Link)`
   display: flex;
   text-decoration: none;
   color: black;
-`;
-
-const Cart = styled.div`
-  text-align: center;
-  font-size: 1rem;
-  background: red;
-  color: white;
-  width: 20px;
-  height: 20px;
-  border-radius: 20px;
+  margin: 1.2vh;
 `;
 
 export default Header;
