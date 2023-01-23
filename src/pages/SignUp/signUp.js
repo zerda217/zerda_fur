@@ -12,7 +12,7 @@ const SIGN_UP = gql`
 const SignUp = () => {
   const navigate = useNavigate();
 
-  const [userInfo, setUserInfo] = useState({ name: "", password: "" });
+  const [userInfo, setUserInfo] = useState({ name: "", password: "", mail: "" });
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -27,8 +27,8 @@ const SignUp = () => {
       variables: {
         userInformation: {
           name: userInfo.name,
+          mail: userInfo.mail,
           password: userInfo.password,
-          // mail: userInfo.mail,
         }
       },
     })
@@ -53,13 +53,13 @@ const SignUp = () => {
         type='text'
         required
         onChange={onChange} />
-      {/* <StyledInput
+      <StyledInput
         name='mail'
         value={userInfo.mail}
         placeholder='이메일'
         type='email'
         required
-        onChange={onChange} /> */}
+        onChange={onChange} />
       <StyledInput
         name='password'
         value={userInfo.password}
