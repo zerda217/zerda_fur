@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../store/feature/userSlice";
-import { BiHomeHeart, BiLogInCircle, BiLogOutCircle, BiIdCard } from "react-icons/bi";
+import { BiHomeHeart, BiLogInCircle, BiLogOutCircle, BiIdCard, BiListCheck } from "react-icons/bi";
 
 const Header = () => {
   const { name } = useSelector((state) => state.user);
@@ -15,16 +15,20 @@ const Header = () => {
       </StyledLink>
       
       <Menu>
+        <StyledLink to='/todos'>
+          <BiListCheck size='3vh' />
+        </StyledLink>
+
         { name !== ""
           ? <div onClick={() => dispatch(logout())}>
               <BiLogOutCircle size='3vh' /> {name}님
             </div>
           : <>
             <StyledLink to='/login'> 
-              <BiLogInCircle size='3vh' /> 로그인
+              <BiLogInCircle size='3vh' />
             </StyledLink>
             <StyledLink to='/signUp'> 
-              <BiIdCard size='3vh' /> 가입 
+              <BiIdCard size='3vh' />
             </StyledLink>
             </>
         }
