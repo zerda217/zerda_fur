@@ -16,6 +16,7 @@ const UserSlice = createSlice({
     logout: (state, action) => {
       state.name = "";
       state.level = 0;
+      state.id = 0;
     },
   },
 });

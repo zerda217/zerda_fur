@@ -32,7 +32,7 @@ const Todos = () => {
       variables: {
         post: {
           title: addTodo,
-          register_user: id === 0 && 1,
+          register_user: id === 0 ? 1 : id,
           category: addCategory
         }
       }
