@@ -46,7 +46,7 @@ const SignIn = () => {
 
   if (data?.signIn.message === "로그인 성공") {
     setConfirm(false)
-    dispatch(login(userInfo.name))
+    dispatch(login(data.signIn.user))
     setUserInfo({ name: "", password: "" })
     navigate('/todos')
   } else if (data?.signIn.message === "가입된 회원이 아닙니다") {
@@ -62,6 +62,7 @@ const SignIn = () => {
         value={userInfo.name}
         placeholder='아이디'
         type='text'
+        autoComplete='off'
         onChange={onChange} />
       <StyledInput
         name="password"
