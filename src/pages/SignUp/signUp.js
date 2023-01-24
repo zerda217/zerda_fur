@@ -63,13 +63,15 @@ const SignUp = () => {
         value={userInfo.name}
         placeholder='아이디'
         type='text'
-        required
+        required='true'
+        autoComplete='off'
         onChange={onChange} />
       <StyledInput
         name='mail'
         value={userInfo.mail}
         placeholder='이메일'
         type='email'
+        autoComplete='off'
         onChange={onChange} />
         {emailErrorMessage && <div style={{color: 'red'}}> {emailErrorMessage} </div>}
       <StyledInput
@@ -77,7 +79,7 @@ const SignUp = () => {
         value={userInfo.password}
         placeholder='비밀번호'
         type='password'
-        required
+        required='true'
         onChange={onChange} />
 
       {signUpComplete 
