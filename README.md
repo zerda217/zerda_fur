@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# ZERDA_FUR
+React로 회원가입, 로그인, 투두리스트 구현한 웹 페이지
+***
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 설치
+1. Repository clone
+2. yarn install
+2-1. zerda_sand 를 실행
+2-2. package.json 파일 25줄 수정 
+```
+"start": "env-cmd -f .env.sample react-scripts start"
+```
+3. yarn start
 
-## Available Scripts
+***
+### 주요 기능
+1. redux를 이용한 회원가입, 로그인
+2. graphQl을 이용한 투두리스트 작성, 조회, 상태 변경
 
-In the project directory, you can run:
+***
+### 개발 기간 (3일)
+23. 01. 20. 기획
+23. 01. 21. 백엔드(zerda_sand), 프론트엔드(zerda_fur) 프로젝트 생성, 초기 세팅
+23. 01. 22. 백엔드 로그인 기능 개발, 프론트엔드 회원가입 / 로그인 / 로그아웃 기능 개발
+23. 01. 23. 백엔드 투두 / JWT 기능 개발, 프론트엔드 투두 조회 / 입력 기능 개발
+23. 01. 24. 백엔드 투두 수정 기능 개발, 프론트엔드 로그인 기능 수정
 
-### `npm start`
+***
+### 폴더 구조
+```
+┌── src
+│   ├── assets →  이미지, 아이콘 같은 정적 파일들
+│   ├── components → 재사용 컴포넌트
+│   │   ├── (footer.js)
+│   │   ├── (header.js)
+│   │   └──  ...
+│   ├── pages → 각 페이지마다 폴더 생성
+│   │   ├── SignIn ── signIn.js → 로그인 화면
+│   │   ├──  ...
+│   │   └── index.js → 처음으로 보여지는 화면
+│   ├── store → redux store
+│   │   ├── feature → 기능단위로 나눈 리듀서
+│   │   │   └──  ...Slice.js
+│   │   └── store.js → 스토어, 리듀서 설정
+│   ├── App.js → ApolloProvider
+│   └── index.js → BrowserRouter
+│
+├── .env.sample → 실사용하는 .env.prod 샘플 파일
+├── .env.prod → yarn start
+├── .gitignore → 깃헙에 업로드 하지 않을 파일 설정
+└── package.json → 설치된 라이브러리, yarn 설정
+``` 
+***
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 작성
+  - **HaNa Kang** - <zerda@korea.ac.kr> / 23.01.25. 업데이트
